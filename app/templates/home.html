@@ -1,5 +1,30 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+<div class="container">
+<br>
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Word</th>
+        <th scope="col">Meaning</th>
+        <th scope="col">Learned at</th>
+        <th scope='col'>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for word in words %}
+    <tr>
+        <td>{{word.word}}</td>
+        <td>{{word.meaning}}</td>
+        <td>{{word.added.strftime("%Y-%m-%d %I:%M %p")}}</td>
+        <td>{{word.note}}</td>
+      </tr>  
+    {% endfor %}
+      
+    </tbody>
+  </table>
+</div>
     
 {% endblock content %}
