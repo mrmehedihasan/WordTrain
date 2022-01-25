@@ -7,33 +7,48 @@
 
 
 <div class="container">
-    <form>
+    <form method="POST" id="myform">
         <div class="form-group">
         <label for="word">Enter Word English</label>
-        <input type="text" class="form-control" id="word" placeholder="Enter Word here">
+        <input type="text" class="form-control" id="word" placeholder="Enter Word here" name="word">
         </div>
         <div class="form-group">
         <label for="meaning">Enter word Bangla</label>
-        <input type="text" class="form-control" id="meaning" placeholder="Enter Word Here">
+        <input type="text" class="form-control" id="meaning" placeholder="Enter Word Here" name="meaning">
         </div>
-        <button type="submit" class="btn btn-primary mb-2" onclick="chnageText()">Submit</button> <p id="cnter"> You need to enter word and meaning <span id="num">5</span> times to commit chanage </p>
+        <button type="submit" id="btn" style="display: none;" class="btn btn-primary mb-2" disabled>Submit</button> <p id="cnter"> You need to enter word and meaning <span id="num">5</span> times to commit chanage </p>
+        <textarea id="note" name="note" class="form-control" style="display: none;"></textarea>
     </form>
+    <button onclick="chnageText()" id='pbtn' class="btn btn-primary">Commit</button>
 </div>
 <script>
     //var btn = document.getElementById('okBtn')
-    counter = 5;
+    counter = 1;
     var update = document.getElementById("num")
+    
+    var wm = new Set();
+
     function chnageText(){
         update.innerText = counter
         counter--;
+        
+        var word = document.getElementById("word").value
+        var meaning  = document.getElementById("meaning").value
+        
+        wm.add(word);
+        wm.add(meaning)
+
         if(counter == 0){
-
+            document.getElementById("btn").disabled  = false
+            document.getElementById("btn").style.display = "block";
+            document.getElementById("note").style.display = "block";
+            document.getElementById('pbtn').style.display = "none";
         }
-    }
-
-    function postData(){
-
+        var word = document.getElementById("word").value = ''
+        var meaning  = document.getElementById("meaning").value = ''
     }
 </script>
-    {% endblock content %}
+    
+
+{% endblock content %}
 
